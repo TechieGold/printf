@@ -48,12 +48,12 @@ void format_selector(char c, va_list ap, int *count)
 		{'%', percent_print},
 		{'d', int_print},
 		{'i', int_print},
-		{'\0', NULL}
+		{'0', NULL}
 	};
 	int i;
 
 	i = 0;
-	while (f_s[i].s != '\0')
+	while (f_s[i].s != '0')
 	{
 		if (f_s[i].s == c)
 		{

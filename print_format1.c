@@ -10,7 +10,7 @@
 
 void char_print(va_list ap, int *count)
 {
-	unsigned char c;
+	char c;
 
 	c = va_arg(ap, int);
 	*count += write(1, &c, 1);
@@ -34,8 +34,7 @@ void string_print(va_list ap, int *count)
 
 	if (string == NULL)
 	{
-		len = _strlen("(nil)");
-		*count += write(1, "(nil)", len);
+		*count += write(1, "(nil)", 5);
 		return;
 	}
 	*count += write(1, string, len);
