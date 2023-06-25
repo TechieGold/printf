@@ -18,11 +18,14 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			format_selector(format[i], ap, &count);
+			if (format[i] == '%')
+				_putchar('%');
+			else
+				format_selector(format[i], ap, &count);
 		}
 		else if (format[i] != '%')
 		{
-			count += write(1, &format[i], 1);
+			count += _putchar(format[i]);
 		}
 		i++;
 	}
@@ -45,7 +48,6 @@ void format_selector(char c, va_list ap, int *count)
 	f_select f_s[] = {
 		{'c', char_print},
 		{'s', string_print},
-		{'%', percent_print},
 		{'d', int_print},
 		{'i', int_print},
 		{'0', NULL}
@@ -53,6 +55,8 @@ void format_selector(char c, va_list ap, int *count)
 	int i;
 
 	i = 0;
+	if (!c || !ap || count == NULL)
+		return;
 	while (f_s[i].s != '0')
 	{
 		if (f_s[i].s == c)

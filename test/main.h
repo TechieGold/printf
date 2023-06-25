@@ -24,8 +24,8 @@ int _printf(const char *format, ...);
 void format_selector(char, va_list, int *);
 void char_print(va_list, int *);
 void string_print(va_list, int *);
-void percent_print(va_list, int *);
 void int_print(va_list, int *);
 void print_num(int, int *);
 int _strlen(char *s);
+int _putchar(char);
 #endif /* MAIN_H */

@@ -13,7 +13,7 @@ void char_print(va_list ap, int *count)
 	char c;
 
 	c = va_arg(ap, int);
-	*count += write(1, &c, 1);
+	*count += _putchar(c);
 }
 
 /**
@@ -41,20 +41,6 @@ void string_print(va_list ap, int *count)
 }
 
 /**
- * percent_print - prints the percent
- * @ap: the variable arg
- * @count: number of value printed
- *
- * Return: void
- */
-
-void percent_print(__attribute__((unused)) va_list ap, int *count)
-{
-	char c = '%';
-	*count += write(1, &c, 1);
-}
-
-/**
  * int_print - prints an int
  * @ap: the variadic arg
  * @count: the number of args printed
@@ -64,7 +50,7 @@ void percent_print(__attribute__((unused)) va_list ap, int *count)
 
 void int_print(va_list ap, int *count)
 {
-	char num;
+	int num;
 
 	num = va_arg(ap, int);
 	print_num(num, count);
@@ -80,15 +66,10 @@ void int_print(va_list ap, int *count)
 
 void print_num(int n, int *count)
 {
-	char c;
-
 	if (n < 0)
 	{
-		char c;
-
-		c = '-';
-		n = (-n);
-		*count += write(1, &c, 1);
+	       *count += _putchar('-');
+	       n = (-n);
 	}
 
 	if (n / 10)
@@ -96,6 +77,5 @@ void print_num(int n, int *count)
 		print_num(n / 10, count);
 	}
 
-	c = (n % 10) + '0';
-	*count += write(1, &c, 1);
+	*count += _putchar((n % 10) + '0');
 }
