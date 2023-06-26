@@ -3,7 +3,7 @@
 /**
  * char_print - print the char value
  * @ap: ap to print
- * @count: number fo values to print
+ * @count: number of values to print
  *
  * Return: void
  */
@@ -18,7 +18,7 @@ void char_print(va_list ap, int *count)
 
 /**
  * string_print - prints a string
- * @ap: variable arg
+ * @ap: variadic arg
  * @count: the number of values to print
  *
  * Return: void
@@ -31,12 +31,12 @@ void string_print(va_list ap, int *count)
 
 	string = va_arg(ap, char *);
 	if (string == NULL)
-	{
 		*count += write(1, "(nil)", 5);
-		return;
+	else
+	{
+		len = _strlen(string);
+		*count += write(1, string, len);
 	}
-	len = _strlen(string);
-	*count += write(1, string, len);
 }
 
 /**
@@ -72,10 +72,7 @@ void print_num(int n, int *count)
 	}
 
 	if (n / 10)
-	{
 		print_num(n / 10, count);
-	}
-
 	*count += _putchar((n % 10) + '0');
 }
 

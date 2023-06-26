@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _printf - prints a formated string
+ * _printf - prints a formatted string
  * @format: the string
  *
- * Return: int
+ * Return: int (number of chars printed)
  */
 
 int _printf(const char *format, ...)
@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	va_list ap;
 
 	va_start(ap, format);
-	while ((format != NULL) && (format[i]))
+	while((format != NULL) && (format[i]))
 	{
 		if (format[i] == '%')
 		{
@@ -32,8 +32,8 @@ int _printf(const char *format, ...)
 /**
  * format_selector - selects the function to execute
  * @c: char value to check
- * @ap: the va argument
- * @count: number of values to print
+ * @ap: the variadic argument
+ * @count: the number of values to print
  *
  * Return: void
  */
@@ -41,12 +41,9 @@ int _printf(const char *format, ...)
 void format_selector(char c, va_list ap, int *count)
 {
 	f_select f_s[] = {
-		{'c', char_print},
-		{'s', string_print},
-		{'%', percent_print},
-		{'d', int_print},
-		{'i', int_print},
-		{'\0', NULL}
+		{'c', char_print}, {'s', string_print},
+		{'%', percent_print}, {'d', int_print},
+		{'i', int_print}, {'\0', NULL}
 	};
 	int i;
 
