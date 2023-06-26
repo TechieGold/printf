@@ -31,7 +31,7 @@ void string_print(va_list ap, int *count)
 
 	string = va_arg(ap, char *);
 	if (string == NULL)
-		*count += write(1, "(nil)", 5);
+		*count += write(1, "(null)", 5);
 	else
 	{
 		len = _strlen(string);
