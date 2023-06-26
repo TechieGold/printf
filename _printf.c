@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 			i++;
 			flag = format_selector(format[i], ap, &count);
 			if (flag == -1)
-				exit (EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 		}
 		else
 			count += _putchar(format[i]);
