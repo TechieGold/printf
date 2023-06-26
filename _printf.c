@@ -23,8 +23,6 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 				return (-1);
 			format_selector(format[i], ap, &count, &flag);
-			if (flag == -1)
-				return (-1);
 		}
 		else
 			count += _putchar(format[i]);
