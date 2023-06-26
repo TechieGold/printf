@@ -11,7 +11,6 @@ int _printf(const char *format, ...)
 {
 	int count = 0, i = 0;
 	va_list ap;
-	int flag;
 
 	va_start(ap, format);
 	while ((format != NULL) && (format[i]))
@@ -19,14 +18,10 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			flag = format_selector(format[i], ap, &count);
-			if (flag == -1)
-				exit(EXIT_FAILURE);
+			format_selector(format[i], ap, &count);
 		}
-		else if (format[i] != '%')
-		{
+		else
 			count += _putchar(format[i]);
-		}
 		i++;
 	}
 
@@ -55,17 +50,14 @@ int format_selector(char c, va_list ap, int *count)
 	};
 	int i;
 
-	if (!c || !ap || count == NULL)
-		return (-1);
 	i = 0;
 	while (f_s[i].s != '\0')
 	{
 		if (f_s[i].s == c)
 		{
 			f_s[i].f(ap, count);
-			return (0);
+			return;
 		}
 		i++;
 	}
-	return (-1);
 }

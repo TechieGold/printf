@@ -33,9 +33,12 @@ void string_print(va_list ap, int *count)
 	len = _strlen(string);
 
 	if (string == NULL)
+	{
 		*count += write(1, "(nil)", 5);
-	else
-		*count += write(1, string, len);
+		return;
+	}
+	len = _strlen(string);
+	*count += write(1, string, len);
 }
 
 /**
