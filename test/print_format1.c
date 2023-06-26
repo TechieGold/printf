@@ -33,11 +33,9 @@ void string_print(va_list ap, int *count)
 	len = _strlen(string);
 
 	if (string == NULL)
-	{
 		*count += write(1, "(nil)", 5);
-		return;
-	}
-	*count += write(1, string, len);
+	else
+		*count += write(1, string, len);
 }
 
 /**
@@ -68,8 +66,8 @@ void print_num(int n, int *count)
 {
 	if (n < 0)
 	{
-	       *count += _putchar('-');
-	       n = (-n);
+		*count += _putchar('-');
+		n = (-n);
 	}
 
 	if (n / 10)
@@ -78,4 +76,17 @@ void print_num(int n, int *count)
 	}
 
 	*count += _putchar((n % 10) + '0');
+}
+
+/**
+ * percent_print - prints a percentage
+ * @ap: the variadic args
+ * @count: the number of chars printed
+ *
+ * Return: void
+ */
+
+void percent_print(__attribute__((unused)) va_list ap, int *count)
+{
+	*count += _putchar('%');
 }
