@@ -10,16 +10,11 @@
  * Return: void
  */
 
-void binary_pr(va_list ap, int *count, int *flag)
+void binary_pr(va_list ap, int *count, __attribute__((unused)) int *flag)
 {
 	unsigned int num;
 
 	num = va_arg(ap, int);
-	if (num <= 0)
-	{
-		flag = -1;
-		return;
-	}
 	bin(num, count);
 }
 
