@@ -13,15 +13,8 @@
 void binary_pr(va_list ap, int *count, __attribute__((unused)) int *flag)
 {
 	unsigned int num;
-	int n;
 
-	n = va_arg(ap, int);
-	if (n < 0)
-	{
-		*flag = -1;
-		return;
-	}
-	num = (1 * n);
+	num = va_arg(ap, int);
 	bin(num, count);
 }
 
