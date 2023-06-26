@@ -4,13 +4,13 @@
  * char_print - print the char value
  * @ap: ap to print
  * @count: number of values to print
- *
+ * @flag: error checker
  * Return: void
  */
 
-void char_print(va_list ap, int *count)
+void char_print(va_list ap, int *count, __attribute__((unused)) int *flag)
 {
-	char c;
+	unsigned char c;
 
 	c = va_arg(ap, int);
 	*count += _putchar(c);
@@ -20,22 +20,23 @@ void char_print(va_list ap, int *count)
  * string_print - prints a string
  * @ap: variadic arg
  * @count: the number of values to print
- *
+ * @flag: error checker
  * Return: void
  */
 
-void string_print(va_list ap, int *count)
+void string_print(va_list ap, int *count, __attribute__((unused)) int *flag)
 {
 	char *string;
 	int len;
 
 	string = va_arg(ap, char *);
 	if (string == NULL)
-		*count += write(1, "(nil)", 5);
-	else
+		string = "(null)";
+	len = 0;
+	while (string[len])
 	{
-		len = _strlen(string);
-		*count += write(1, string, len);
+		*count += _putchar(string[len]);
+		len++;
 	}
 }
 
@@ -43,11 +44,11 @@ void string_print(va_list ap, int *count)
  * int_print - prints an int
  * @ap: the variadic arg
  * @count: the number of args printed
- *
+ * @flag: error checker
  * Return: void
  */
 
-void int_print(va_list ap, int *count)
+void int_print(va_list ap, int *count, __attribute__((unused)) int *flag)
 {
 	int num;
 	unsigned int abs = 0;
@@ -82,11 +83,12 @@ void print_num(unsigned int n, int *count)
  * percent_print - prints a percentage
  * @ap: the variadic args
  * @count: the number of chars printed
- *
+ * @flag: error checker
  * Return: void
  */
 
-void percent_print(__attribute__((unused)) va_list ap, int *count)
+void percent_print(__attribute__((unused)) va_list ap, int *count,
+		__attribute__((unused)) int *flag)
 {
 	*count += _putchar('%');
 }

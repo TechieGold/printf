@@ -9,16 +9,22 @@
 
 int _printf(const char *format, ...)
 {
-	int count = 0, i = 0;
+	int count = 0, i = 0, flag = 0;
 	va_list ap;
 
+	if (format == NULL)
+		return (-1);
 	va_start(ap, format);
-	while((format != NULL) && (format[i]))
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			format_selector(format[i], ap, &count);
+			if (format[i] == '\0')
+				return (-1);
+			format_selector(format[i], ap, &count, &flag);
+			if (flag == -1)
+				return (-1);
 		}
 		else
 			count += _putchar(format[i]);
@@ -34,16 +40,18 @@ int _printf(const char *format, ...)
  * @c: char value to check
  * @ap: the variadic argument
  * @count: the number of values to print
+ * @flag: error checker
  *
  * Return: void
  */
 
-void format_selector(char c, va_list ap, int *count)
+void format_selector(char c, va_list ap, int *count, int *flag)
 {
 	f_select f_s[] = {
 		{'c', char_print}, {'s', string_print},
 		{'%', percent_print}, {'d', int_print},
-		{'i', int_print}, {'\0', NULL}
+		{'i', int_print}, {'b', binary_pr},
+		{'\0', NULL}
 	};
 	int i;
 
@@ -52,9 +60,10 @@ void format_selector(char c, va_list ap, int *count)
 	{
 		if (f_s[i].s == c)
 		{
-			f_s[i].f(ap, count);
+			f_s[i].f(ap, count, flag);
 			return;
 		}
 		i++;
 	}
+	*count += _putchar('%') + _putchar(c);
 }

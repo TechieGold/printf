@@ -21,9 +21,7 @@ int main(void)
 	printf("String:[%s]\n", "I am a string !");
 	_printf("%% %%\n");
 
+	_printf("%b\n", 98);
 	_printf("Fake printf: %d \nOriginal printf %i\n", len, len2);
-	len = -2;
-	len2 = -10;
-	_printf("\nFake printf: %d \nOriginal printf %i\n", len, len2);
 	return (0);
 }
