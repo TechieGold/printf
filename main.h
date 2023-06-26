@@ -20,7 +20,7 @@ typedef struct formatSelector
 } f_select;
 
 int _printf(const char *format, ...);
-int format_selector(char c, va_list ap, int *count);
+void format_selector(char c, va_list ap, int *count);
 void char_print(va_list, int *);
 void string_print(va_list, int *);
 void int_print(va_list, int *);
