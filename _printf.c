@@ -13,15 +13,11 @@ int _printf(const char *format, ...)
 	va_list ap;
 
 	va_start(ap, format);
-	if (format == NULL)
-		return (-1);
-	while (format[i])
+	while((format != NULL) && (format[i]))
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '\0')
-				return (-1);
 			format_selector(format[i], ap, &count);
 		}
 		else
@@ -61,5 +57,4 @@ void format_selector(char c, va_list ap, int *count)
 		}
 		i++;
 	}
-	*count += _putchar('%') + _putchar(c);
 }

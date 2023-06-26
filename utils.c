@@ -14,7 +14,7 @@ int _putchar(char c)
 
 /**
  * _strlen - finds the length of a string
- * @s: pointer to string
+ * @s: pointer to string 
  *
  * Return: int
  */

@@ -3,7 +3,6 @@
 
 #include <stdarg.h>
 #include <unistd.h>
-#include <stdlib.h>
 
 /**
  * struct formatSelector - struct for format type
@@ -24,7 +23,7 @@ void format_selector(char c, va_list ap, int *count);
 void char_print(va_list, int *);
 void string_print(va_list, int *);
 void int_print(va_list, int *);
-void print_num(int, int *);
+void print_num(unsigned int, int *);
 void percent_print(va_list, int *);
 int _strlen(char *);
 int _putchar(char);

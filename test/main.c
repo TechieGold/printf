@@ -22,5 +22,8 @@ int main(void)
 	_printf("%% %%\n");
 
 	_printf("Fake printf: %d \nOriginal printf %i\n", len, len2);
+	len = -2;
+	len2 = -10;
+	_printf("\nFake printf: %d \nOriginal printf %i\n", len, len2);
 	return (0);
 }

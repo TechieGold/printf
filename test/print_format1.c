@@ -10,7 +10,7 @@
 
 void char_print(va_list ap, int *count)
 {
-	unsigned char c;
+	char c;
 
 	c = va_arg(ap, int);
 	*count += _putchar(c);
@@ -31,12 +31,11 @@ void string_print(va_list ap, int *count)
 
 	string = va_arg(ap, char *);
 	if (string == NULL)
-		string = "(null)";
-	len = 0;
-	while (string[len])
+		*count += write(1, "(nil)", 5);
+	else
 	{
-		*count += _putchar(string[len]);
-		len++;
+		len = _strlen(string);
+		*count += write(1, string, len);
 	}
 }
 
@@ -51,9 +50,17 @@ void string_print(va_list ap, int *count)
 void int_print(va_list ap, int *count)
 {
 	int num;
+	unsigned int abs = 0;
 
 	num = va_arg(ap, int);
-	print_num(num, count);
+	if (num < 0)
+	{
+		*count += _putchar('-');
+		abs = (num * -1);
+	}
+	else
+		abs = num;
+	print_num(abs, count);
 }
 
 /**
@@ -64,14 +71,8 @@ void int_print(va_list ap, int *count)
  * Return: void
  */
 
-void print_num(int n, int *count)
+void print_num(unsigned int n, int *count)
 {
-	if (n < 0)
-	{
-		*count += _putchar('-');
-		n = (-n);
-	}
-
 	if (n / 10)
 		print_num(n / 10, count);
 	*count += _putchar((n % 10) + '0');
