@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 /**
  * struct formatSelector - struct for format type
@@ -19,7 +20,7 @@ typedef struct formatSelector
 } f_select;
 
 int _printf(const char *format, ...);
-void format_selector(char c, va_list ap, int *count);
+int format_selector(char c, va_list ap, int *count);
 void char_print(va_list, int *);
 void string_print(va_list, int *);
 void int_print(va_list, int *);

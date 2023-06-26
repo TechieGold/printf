@@ -11,6 +11,7 @@ int _printf(const char *format, ...)
 {
 	int count = 0, i = 0;
 	va_list ap;
+	int flag;
 
 	va_start(ap, format);
 	while ((format != NULL) && (format[i]))
@@ -18,7 +19,9 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			format_selector(format[i], ap, &count);
+			flag = format_selector(format[i], ap, &count);
+			if (flag == -1)
+				exit (EXIT_FAILURE);
 		}
 		else
 			count += _putchar(format[i]);
@@ -38,7 +41,7 @@ int _printf(const char *format, ...)
  * Return: void
  */
 
-void format_selector(char c, va_list ap, int *count)
+int format_selector(char c, va_list ap, int *count)
 {
 	f_select f_s[] = {
 		{'c', char_print}, {'s', string_print},
@@ -48,13 +51,16 @@ void format_selector(char c, va_list ap, int *count)
 	int i;
 
 	i = 0;
+	if (!c || !ap || count == NULL)
+		return (-1);
 	while (f_s[i].s != '\0')
 	{
 		if (f_s[i].s == c)
 		{
 			f_s[i].f(ap, count);
-			return;
+			return (0);
 		}
 		i++;
 	}
+	return (-1);
 }
