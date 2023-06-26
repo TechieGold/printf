@@ -31,11 +31,12 @@ void string_print(va_list ap, int *count)
 
 	string = va_arg(ap, char *);
 	if (string == NULL)
-		*count += write(1, "(null)", 5);
-	else
+		string = "(null)";
+	len = 0;
+	while (string[len])
 	{
-		len = _strlen(string);
-		*count += write(1, string, len);
+		*count += _putchar(string[len]);
+		len++;
 	}
 }
 
