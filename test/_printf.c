@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
  * Return: void
  */
 
-int format_selector(char c, va_list ap, int *count)
+void format_selector(char c, va_list ap, int *count)
 {
 	f_select f_s[] = {
 		{'c', char_print},

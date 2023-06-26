@@ -21,7 +21,7 @@ void char_print(va_list ap, int *count)
  * @ap: variable arg
  * @count: the number of values to print
  *
- * Return: vooid
+ * Return: void
  */
 
 void string_print(va_list ap, int *count)
@@ -30,8 +30,6 @@ void string_print(va_list ap, int *count)
 	int len;
 
 	string = va_arg(ap, char *);
-	len = _strlen(string);
-
 	if (string == NULL)
 	{
 		*count += write(1, "(nil)", 5);

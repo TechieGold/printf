@@ -17,16 +17,16 @@
 typedef struct formatSelector
 {
 	char s;
-	void (*f)(va_list, int *count);
+	void (*f)(va_list, int *);
 } f_select;
 
 int _printf(const char *format, ...);
-int format_selector(char, va_list, int *);
+void format_selector(char, va_list, int *);
 void char_print(va_list, int *);
 void string_print(va_list, int *);
 void int_print(va_list, int *);
 void percent_print(va_list, int *);
 void print_num(int, int *);
-int _strlen(char *s);
+int _strlen(char *);
 int _putchar(char);
 #endif /* MAIN_H */
