@@ -11,15 +11,17 @@ int _printf(const char *format, ...)
 {
 	int count = 0, i = 0;
 	va_list ap;
-	
+
 	va_start(ap, format);
-	while ((format != NULL) && (format[i]))
+	if (format == NULL)
+		return (-1);
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == '\0')
-				return (count);
+				return (-1);
 			format_selector(format[i], ap, &count);
 		}
 		else
