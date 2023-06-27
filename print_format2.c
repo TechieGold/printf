@@ -65,6 +65,8 @@ void non_print_ascii(va_list ap, int *count,
 			int cap = 1;
 
 			*count += _putchar('\\') + _putchar('x');
+			if (num <= 15)
+				*count += _putchar('0');
 			hexa_print(num, count, &cap);
 		}
 		else

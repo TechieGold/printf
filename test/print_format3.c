@@ -59,15 +59,21 @@ void hexa_print(unsigned int num, int *count, int *cap)
 
 		if (*cap == 1)
 		{
-			while (i++ < 6)
+			while (i < 6)
+			{
 				if (value[i] == decimal)
 					*count += _putchar(upper_chr[i]);
+				i++;
+			}
 		}
 		else
 		{
-			while (i++ < 6)
+			while (i < 6)
+			{
 				if (value[i] == decimal)
 					*count += _putchar(low_chr[i]);
+				i++;
+			}
 		}
 	}
 	else
