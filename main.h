@@ -31,5 +31,12 @@ int _strlen(char *);
 int _putchar(char);
 void binary_pr(va_list, int *, int *);
 void bin(unsigned int, int *);
+void non_print_ascii(va_list, int *, int *);
+void unsigned_int(va_list, int *, int *);
+void octal(va_list, int *, int *);
+void octal_print(unsigned int, int *);
+void hexa(va_list, int *, int *);
+void hexa_print(unsigned int, int *, int *);
+void hexa_cap(va_list, int *, int *);
 
 #endif /* MAIN_H */
