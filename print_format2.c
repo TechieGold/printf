@@ -14,7 +14,7 @@ void binary_pr(va_list ap, int *count, __attribute__((unused)) int *flag)
 	unsigned int num;
 
 	num = va_arg(ap, int);
-	if (n == 0)
+	if (num == 0)
 	{
 		*count += _putchar('0');
 	}
