@@ -17,8 +17,8 @@ void binary_pr(va_list ap, int *count, __attribute__((unused)) int *flag)
 	n = va_arg(ap, int);
 	if (n < 0)
 	{
-		*flag = -1;
-		return;
+		*count += _putchar('1');
+		n = (-n);
 	}
 	num = (1 * n);
 	bin(num, count);

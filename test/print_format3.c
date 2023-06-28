@@ -35,8 +35,7 @@ void hexa(va_list ap, int *count,
 	num = va_arg(ap, unsigned int);
 	if (num == 0)
 	{
-		*count += _putchar('0') + _putchar('0');
-		return;
+		*count += _putchar('0');
 	}
 	hexa_print(num, count, cap);
 }
@@ -104,8 +103,7 @@ void hexa_cap(va_list ap, int *count,
 	num = va_arg(ap, unsigned int);
 	if (num == 0)
 	{
-		*count += _putchar('0') + _putchar('0');
-		return;
+		*count += _putchar('0');
 	}
 	hexa_print(num, count, cap);
 }
