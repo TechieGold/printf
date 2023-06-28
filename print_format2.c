@@ -17,19 +17,20 @@ void binary_pr(va_list ap, int *count, __attribute__((unused)) int *flag)
 	n = va_arg(ap, int);
 	if (n == 0)
 	{
-		*count += _putchar('0');
+		*count += _putchar('0') + _putchar('0');
+		return;
 	}
 	if (n < 0)
 	{
 		*count += _putchar('1');
-		n = (-n);
+		n = (-1 * n);
 	}
 	num = (1 * n);
 	bin(num, count);
 }
 
 /**
- * bin - prints the binary
+ * bin - prints the binar
  * @num: the int to convert
  * @count: the num of args printed
  *
