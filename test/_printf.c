@@ -9,7 +9,7 @@
 
 int _printf(const char *format, ...)
 {
-	int count = 0, i = 0, flag = 0;
+	int count = 0, i = 0, flag = 0, flag1 = 0;
 	va_list ap;
 
 	if (format == NULL)
@@ -22,7 +22,33 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0')
 				return (-1);
-			format_selector(format[i], ap, &count, &flag);
+			if (format[i] == '+')
+			{
+				flag = '+';
+				i++;
+				if (format[i] == 32)
+				{
+					flag1 = 32;
+					i++;
+				}
+			}
+			else if (format[i] == '#')
+			{
+				flag = '#';
+				i++;
+			}
+			else if (format[i] == 32)
+			{
+				flag = 32;
+				i++;
+				if (format[i] == '+')
+				{
+					flag1 = '+';
+					i++;
+				}
+			}
+			format_selector(format[i], ap, &count, &flag,
+					&flag1);
 			if (flag == -1)
 				return (-1);
 		}
@@ -45,7 +71,8 @@ int _printf(const char *format, ...)
  * Return: void
  */
 
-void format_selector(char c, va_list ap, int *count, int *flag)
+void format_selector(char c, va_list ap, int *count, int *flag,
+		int *flag1)
 {
 	f_select f_s[] = {
 		{'c', char_print}, {'s', string_print},
@@ -62,7 +89,7 @@ void format_selector(char c, va_list ap, int *count, int *flag)
 	{
 		if (f_s[i].s == c)
 		{
-			f_s[i].f(ap, count, flag);
+			f_s[i].f(ap, count, flag, flag1);
 			return;
 		}
 		i++;

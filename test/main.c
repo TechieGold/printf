@@ -34,5 +34,9 @@ int main(void)
 	_printf("_____________________");
 	printf("Address:[%p]\n", addr);
 	_printf("Address:[%p]\n", addr);
+	_printf("%+d\n%+d\n", 98, -98);
+	_printf("%#o %#x %#X %+d\n", 98, 98, 98, 98);
+	_printf("% i + % i = % i\n", 98, 98, (98 + 98));
+	_printf("% +i + %+ i = % +d\n", -98, 98, (-98 + 98));
 	return (0);
 }

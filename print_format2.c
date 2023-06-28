@@ -9,7 +9,8 @@
  * Return: void
  */
 
-void binary_pr(va_list ap, int *count, __attribute__((unused)) int *flag)
+void binary_pr(va_list ap, int *count, __attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	unsigned int num;
 
@@ -47,7 +48,8 @@ void bin(unsigned int num, int *count)
  */
 
 void non_print_ascii(va_list ap, int *count,
-		__attribute__((unused)) int *flag)
+		__attribute__((unused)) int *flag,
+		__attribute__ ((unused)) int *flag1)
 {
 	char *s = va_arg(ap, char *);
 	int i = 0;
@@ -83,7 +85,8 @@ void non_print_ascii(va_list ap, int *count,
  */
 
 void unsigned_int(va_list ap, int *count,
-		__attribute__((unused)) int *flag)
+		__attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	unsigned int num;
 
@@ -100,13 +103,13 @@ void unsigned_int(va_list ap, int *count,
  * Return: void
  */
 
-void octal(va_list ap, int *count,
-		__attribute__((unused)) int *flag)
+void octal(va_list ap, int *count, int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	unsigned int num;
 
 	num = va_arg(ap, unsigned int);
-	if (num == 0)
+	if (num == 0 || *flag == '#')
 	{
 		*count += _putchar('0');
 	}

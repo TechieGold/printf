@@ -8,7 +8,8 @@
  * Return: void
  */
 
-void char_print(va_list ap, int *count, __attribute__((unused)) int *flag)
+void char_print(va_list ap, int *count, __attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	unsigned char c;
 
@@ -24,7 +25,8 @@ void char_print(va_list ap, int *count, __attribute__((unused)) int *flag)
  * Return: void
  */
 
-void string_print(va_list ap, int *count, __attribute__((unused)) int *flag)
+void string_print(va_list ap, int *count, __attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	char *string;
 	int len;
@@ -48,12 +50,16 @@ void string_print(va_list ap, int *count, __attribute__((unused)) int *flag)
  * Return: void
  */
 
-void int_print(va_list ap, int *count, __attribute__((unused)) int *flag)
+void int_print(va_list ap, int *count, int *flag, int *flag1)
 {
 	int num;
 	unsigned int abs = 0;
 
 	num = va_arg(ap, int);
+	if (num > 0 && (*flag == '+' || (*flag == 32 && *flag1 == '+')))
+		*count += _putchar('+');
+	if (num > 0 && (*flag == 32 && *flag1 != '+'))
+		*count += _putchar(' ');
 	if (num < 0)
 	{
 		*count += _putchar('-');
@@ -88,7 +94,8 @@ void print_num(unsigned int n, int *count)
  */
 
 void percent_print(__attribute__((unused)) va_list ap, int *count,
-		__attribute__((unused)) int *flag)
+		__attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	*count += _putchar('%');
 }

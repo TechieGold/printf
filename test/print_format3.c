@@ -27,13 +27,16 @@ void octal_print(unsigned int num, int *count)
  */
 
 void hexa(va_list ap, int *count,
-		__attribute__((unused)) int *flag)
+		__attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	unsigned long int num;
 	int *cap, lowercase = 0;
 
 	cap = &lowercase;
 	num = va_arg(ap, unsigned long int);
+	if (*flag == '#')
+		*count += write(1, "0x", 2);
 	if (num == 0)
 	{
 		*count += _putchar('0');
@@ -95,13 +98,16 @@ void hexa_print(unsigned long int num, int *count, int *cap)
  */
 
 void hexa_cap(va_list ap, int *count,
-		__attribute__((unused)) int *flag)
+		__attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	unsigned long int num;
 	int *cap, upper = 1;
 
 	cap = &upper;
 	num = va_arg(ap, unsigned long int);
+	if (*flag == '#')
+		*count += write(1, "0x", 2);
 	if (num == 0)
 	{
 		*count += _putchar('0');
@@ -119,11 +125,17 @@ void hexa_cap(va_list ap, int *count,
  */
 
 void pointer_addr(va_list ap, int *count,
-		__attribute__((unused)) int *flag)
+		__attribute__((unused)) int *flag,
+		__attribute__((unused)) int *flag1)
 {
 	unsigned long int ptr;
 
 	ptr = (unsigned long int)va_arg(ap, void *);
-	*count += write(1, "0x", 2);
-	*count += _printf("%x", ptr);
+	if (ptr == 0)
+		*count += write(1, "(nil)", 5);
+	else
+	{
+		*count += write(1, "0x", 2);
+		*count += _printf("%x", ptr);
+	}
 }
