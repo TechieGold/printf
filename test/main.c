@@ -38,5 +38,8 @@ int main(void)
 	_printf("%#o %#x %#X %+d\n", 98, 98, 98, 98);
 	_printf("% i + % i = % i\n", 98, 98, (98 + 98));
 	_printf("% +i + %+ i = % +d\n", -98, 98, (-98 + 98));
+
+	_printf("% \n");
+	_printf("% % % %\n");
 	return (0);
 }

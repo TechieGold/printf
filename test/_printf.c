@@ -22,35 +22,8 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0')
 				return (-1);
-			if (format[i] == '+')
-			{
-				flag = '+';
-				i++;
-				if (format[i] == 32)
-				{
-					flag1 = 32;
-					i++;
-				}
-			}
-			else if (format[i] == '#')
-			{
-				flag = '#';
-				i++;
-			}
-			else if (format[i] == 32)
-			{
-				flag = 32;
-				i++;
-				if (format[i] == '+')
-				{
-					flag1 = '+';
-					i++;
-				}
-			}
-			format_selector(format[i], ap, &count, &flag,
-					&flag1);
-			if (flag == -1)
-				return (-1);
+			flag_character(format, &i, ap, &count,
+					&flag, &flag1);
 		}
 		else
 			count += _putchar(format[i]);
@@ -67,6 +40,7 @@ int _printf(const char *format, ...)
  * @ap: the variadic argument
  * @count: the number of values to print
  * @flag: error checker
+ * @flag: the second flag checker
  *
  * Return: void
  */
@@ -95,4 +69,57 @@ void format_selector(char c, va_list ap, int *count, int *flag,
 		i++;
 	}
 	*count += _putchar('%') + _putchar(c);
+}
+
+/**
+ * flag_character - checks for flags
+ * @format: the string
+ * @i: the index to start from
+ * @ap: the variadic function
+ * @count: the number of characters to print
+ * @flag: the type of flag char 1
+ * @flag1: the type of flag char 2
+ *
+ * Return: void
+ */
+
+void flag_character(const char *format, int *i, va_list ap, int *count,
+		int *flag, int *flag1)
+{
+	int index = *i;
+
+	if (format[index] == '+')
+	{
+		*flag = '+';
+		index++;
+		if (format[index] == 32)
+		{
+			*flag1 = 32;
+			index++;
+		}
+	}
+	else if (format[index] == '#')
+	{
+		*flag = '#';
+		index++;
+	}
+	else if (format[index] == 32)
+	{
+		*flag = 32;
+		index++;
+		if (format[index] == '+')
+		{
+			*flag = '+';
+			index++;
+		}
+		else if ((format[index] == '%') || (format[index] == '\0'))
+		{
+			*count += _putchar('%') + _putchar(32);
+			index--;
+			*i = index;
+			return;
+		}
+	}
+	*i = index;
+	format_selector(format[index], ap, count, flag, flag1);
 }
