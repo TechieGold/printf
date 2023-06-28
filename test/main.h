@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 #define KILO_BYTE 1024
 /**
@@ -36,7 +37,8 @@ void unsigned_int(va_list, int *, int *);
 void octal(va_list, int *, int *);
 void octal_print(unsigned int, int *);
 void hexa(va_list, int *, int *);
-void hexa_print(unsigned int, int *, int *);
+void hexa_print(unsigned long int, int *, int *);
 void hexa_cap(va_list, int *, int *);
+void pointer_addr(va_list, int *, int *);
 
 #endif /* MAIN_H */

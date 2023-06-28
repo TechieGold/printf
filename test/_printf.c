@@ -53,7 +53,7 @@ void format_selector(char c, va_list ap, int *count, int *flag)
 		{'i', int_print}, {'b', binary_pr},
 		{'S', non_print_ascii}, {'u', unsigned_int},
 		{'o', octal}, {'x', hexa}, {'X', hexa_cap},
-		{'\0', NULL}
+		{'p', pointer_addr}, {'\0', NULL}
 	};
 	int i;
 

@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * octal_print - prints an octal value
@@ -28,11 +29,11 @@ void octal_print(unsigned int num, int *count)
 void hexa(va_list ap, int *count,
 		__attribute__((unused)) int *flag)
 {
-	unsigned int num;
+	unsigned long int num;
 	int *cap, lowercase = 0;
 
 	cap = &lowercase;
-	num = va_arg(ap, unsigned int);
+	num = va_arg(ap, unsigned long int);
 	if (num == 0)
 	{
 		*count += _putchar('0');
@@ -49,7 +50,7 @@ void hexa(va_list ap, int *count,
  * Return: void
  */
 
-void hexa_print(unsigned int num, int *count, int *cap)
+void hexa_print(unsigned long int num, int *count, int *cap)
 {
 	if (num == 0)
 		return;
@@ -96,11 +97,11 @@ void hexa_print(unsigned int num, int *count, int *cap)
 void hexa_cap(va_list ap, int *count,
 		__attribute__((unused)) int *flag)
 {
-	unsigned int num;
+	unsigned long int num;
 	int *cap, upper = 1;
 
 	cap = &upper;
-	num = va_arg(ap, unsigned int);
+	num = va_arg(ap, unsigned long int);
 	if (num == 0)
 	{
 		*count += _putchar('0');
@@ -108,3 +109,21 @@ void hexa_cap(va_list ap, int *count,
 	hexa_print(num, count, cap);
 }
 
+/**
+ * pointer_addr - prints a pointer address
+ * @ap: the variadic function
+ * @count: the number of char printed
+ * @flag: error checker
+ *
+ * Return: void
+ */
+
+void pointer_addr(va_list ap, int *count,
+		__attribute__((unused)) int *flag)
+{
+	unsigned long int ptr;
+
+	ptr = (unsigned long int)va_arg(ap, void *);
+	*count += write(1, "0x", 2);
+	*count += _printf("%x", ptr);
+}

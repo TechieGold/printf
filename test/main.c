@@ -12,6 +12,7 @@ int main(void)
 {
 	int len;
 	int len2;
+	void *addr;
 
 	len = _printf("Let's try to printf a simple sentence.\n");
 	len2 = printf("Let's try to printf a simple sentence.\n");
@@ -20,6 +21,7 @@ int main(void)
 	_printf("String:[%s]\n", "I am a string !");
 	printf("String:[%s]\n", "I am a string !");
 	_printf("%% %%\n");
+	addr = (void *)0x7ffe637541f0;
 
 	_printf("___");
 	_printf("%b\n", 98);
@@ -29,5 +31,8 @@ int main(void)
 	_printf("Fake printf: %d \nOriginal printf %i\n", len, len2);
 	_printf("%x \n%X \n%o\n", 0, 0, 0);
 	_printf("%b \n%b\n", -1024, 1024);
+	_printf("_____________________");
+	printf("Address:[%p]\n", addr);
+	_printf("Address:[%p]\n", addr);
 	return (0);
 }
