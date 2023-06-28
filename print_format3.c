@@ -35,7 +35,7 @@ void hexa(va_list ap, int *count,
 
 	cap = &lowercase;
 	num = va_arg(ap, unsigned long int);
-	if (*flag == '#')
+	if (*flag == '#' && num != 0)
 		*count += write(1, "0x", 2);
 	if (num == 0)
 	{
@@ -106,7 +106,7 @@ void hexa_cap(va_list ap, int *count,
 
 	cap = &upper;
 	num = va_arg(ap, unsigned long int);
-	if (*flag == '#')
+	if (*flag == '#' && num != 0)
 		*count += write(1, "0X", 2);
 	if (num == 0)
 	{
