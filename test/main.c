@@ -25,5 +25,6 @@ int main(void)
 	_printf("\n%u\n%o\n%x\n%X\n", 59, 59, 59, 59);
 	_printf("%S\n", "Best\nSchool");
 	_printf("Fake printf: %d \nOriginal printf %i\n", len, len2);
+	_printf("%x \n%X \n%o", 0, 0, 0);
 	return (0);
 }

@@ -109,5 +109,10 @@ void octal(va_list ap, int *count,
 	unsigned int num;
 
 	num = va_arg(ap, unsigned int);
+	if (num == 0)
+	{
+		*count += _putchar('0') + _putchar('0');
+		return;
+	}
 	octal_print(num, count);
 }
