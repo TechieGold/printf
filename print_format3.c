@@ -107,7 +107,7 @@ void hexa_cap(va_list ap, int *count,
 	cap = &upper;
 	num = va_arg(ap, unsigned long int);
 	if (*flag == '#')
-		*count += write(1, "0x", 2);
+		*count += write(1, "0X", 2);
 	if (num == 0)
 	{
 		*count += _putchar('0');

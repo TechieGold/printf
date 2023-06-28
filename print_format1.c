@@ -56,9 +56,9 @@ void int_print(va_list ap, int *count, int *flag, int *flag1)
 	unsigned int abs = 0;
 
 	num = va_arg(ap, int);
-	if (num > 0 && (*flag == '+' || (*flag == 32 && *flag1 == '+')))
+	if (num >= 0 && (*flag == '+' || (*flag == 32 && *flag1 == '+')))
 		*count += _putchar('+');
-	if (num > 0 && (*flag == 32 && *flag1 != '+'))
+	if (num >= 0 && (*flag == 32 && *flag1 != '+'))
 		*count += _putchar(' ');
 	if (num < 0)
 	{
