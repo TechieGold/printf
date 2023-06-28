@@ -124,6 +124,11 @@ void pointer_addr(va_list ap, int *count,
 	unsigned long int ptr;
 
 	ptr = (unsigned long int)va_arg(ap, void *);
-	*count += write(1, "0x", 2);
-	*count += _printf("%x", ptr);
+	if (ptr == 0)
+		*count += write(1, "(nil)", 5);
+	else
+	{
+		*count += write(1, "0x", 2);
+		*count += _printf("%x", ptr);
+	}
 }
