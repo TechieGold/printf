@@ -57,7 +57,9 @@ void int_print(va_list ap, int *count, int *flag, int *flag1)
 {
 	int num;
 	unsigned int abs = 0;
+	va_list cp;
 
+	va_copy(cp, ap);
 	num = va_arg(ap, int);
 	if (num >= 0 && (*flag == '+' || (*flag == 32 && *flag1 == '+')))
 		*count += _putchar('+');
@@ -65,7 +67,10 @@ void int_print(va_list ap, int *count, int *flag, int *flag1)
 		*count += _putchar(' ');
 	if (*flag == 'l')
 	{
-		print_long_num((long int)num, count);
+		long num1 = va_arg(cp, long);
+
+		print_long_num(num1, count);
+		va_end(cp);
 		return;
 	}
 	if (*flag == 'h')
@@ -81,6 +86,7 @@ void int_print(va_list ap, int *count, int *flag, int *flag1)
 	else
 		abs = num;
 	print_num(abs, count);
+	va_end(cp);
 }
 
 /**

@@ -43,6 +43,11 @@ int main(void)
 	len = _printf("% % % % ");
 	_printf("%ld \n%ld\n", 1024L, -1024L);
 
+	printf("_____\n");
+	printf("%ld\n", LONG_MAX);
+	printf("____\n");
+	_printf("%ld", LONG_MAX);
+	printf("\n____\n");
 	printf("%d %d\n", len, len2);
 	return (0);
 }
