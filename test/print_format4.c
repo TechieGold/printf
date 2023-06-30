@@ -10,7 +10,7 @@
 
 void print_long_num(long int num, int *count)
 {
-	long int abs;
+	unsigned long int abs;
 
 	if (num < 0)
 	{
@@ -30,7 +30,7 @@ void print_long_num(long int num, int *count)
  * Return: void
  */
 
-void printout_long_num(long int n, int *count)
+void printout_long_num(unsigned long int n, int *count)
 {
 	if (n / 10)
 		printout_long_num(n / 10, count);

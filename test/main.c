@@ -44,9 +44,9 @@ int main(void)
 	_printf("%ld \n%ld\n", 1024L, -1024L);
 
 	printf("_____\n");
-	printf("%ld\n", LONG_MAX);
+	printf("%ld\n", LONG_MIN);
 	printf("____\n");
-	_printf("%ld", LONG_MAX);
+	_printf("%ld", LONG_MIN);
 	printf("\n____\n");
 	printf("%d %d\n", len, len2);
 	return (0);

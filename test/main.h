@@ -42,7 +42,7 @@ void hexa_print(unsigned long int, int *, int *);
 void hexa_cap(va_list, int *, int *, int *);
 void pointer_addr(va_list, int *, int *, int *);
 void print_long_num(long int, int *);
-void printout_long_num(long int, int *);
+void printout_long_num(unsigned long int, int *);
 void print_unsignedlong_int(unsigned long int, int *);
 void octal_print_long(unsigned int long, int *);
 void print_short_num(short, int *);
