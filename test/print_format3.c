@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * octal_print - prints an octal value
@@ -22,12 +21,12 @@ void octal_print(unsigned int num, int *count)
  * @ap: the variadic args
  * @count: the number of args passed
  * @flag: error checker
+ * @flag1: flag checker 2
  *
  * Return: void
  */
 
-void hexa(va_list ap, int *count,
-		__attribute__((unused)) int *flag,
+void hexa(va_list ap, int *count, int *flag,
 		__attribute__((unused)) int *flag1)
 {
 	unsigned long int num;
@@ -35,8 +34,19 @@ void hexa(va_list ap, int *count,
 
 	cap = &lowercase;
 	num = va_arg(ap, unsigned long int);
-	if (*flag == '#' && num != 0)
+	if ((*flag == '#' && num != 0) || (*flag == 'l' && num != 0))
 		*count += write(1, "0x", 2);
+	if (*flag == 'h')
+	{
+		unsigned short new_num = (unsigned short)num;
+
+		if (num == 0)
+			*count += _putchar('0');
+		if (num != 0)
+			*count += write(1, "0x", 2);
+		hexa_print_short(new_num, count, cap);
+		return;
+	}
 	if (num == 0)
 	{
 		*count += _putchar('0');
@@ -93,12 +103,12 @@ void hexa_print(unsigned long int num, int *count, int *cap)
  * @ap: the va_list arg
  * @count: the number of args printed
  * @flag: error checker
+ * @flag1: flag checker 2
  *
  * Return: void
  */
 
-void hexa_cap(va_list ap, int *count,
-		__attribute__((unused)) int *flag,
+void hexa_cap(va_list ap, int *count, int *flag,
 		__attribute__((unused)) int *flag1)
 {
 	unsigned long int num;
@@ -106,8 +116,19 @@ void hexa_cap(va_list ap, int *count,
 
 	cap = &upper;
 	num = va_arg(ap, unsigned long int);
-	if (*flag == '#' && num != 0)
+	if ((*flag == '#' && num != 0) || (*flag == 'l' && num != 0))
 		*count += write(1, "0X", 2);
+	if (*flag == 'h')
+	{
+		unsigned short new_num = (unsigned short)num;
+
+		if (num == 0)
+			*count += _putchar('0');
+		if (num != 0)
+			*count += write(1, "0x", 2);
+		hexa_print_short(new_num, count, cap);
+		return;
+	}
 	if (num == 0)
 	{
 		*count += _putchar('0');
@@ -120,6 +141,7 @@ void hexa_cap(va_list ap, int *count,
  * @ap: the variadic function
  * @count: the number of char printed
  * @flag: error checker
+ * @flag1: flag checker 2
  *
  * Return: void
  */

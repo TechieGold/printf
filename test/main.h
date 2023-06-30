@@ -41,5 +41,13 @@ void hexa(va_list, int *, int *, int *);
 void hexa_print(unsigned long int, int *, int *);
 void hexa_cap(va_list, int *, int *, int *);
 void pointer_addr(va_list, int *, int *, int *);
-
+void print_long_num(long int, int *);
+void printout_long_num(long int, int *);
+void print_unsignedlong_int(unsigned long int, int *);
+void octal_print_long(unsigned int long, int *);
+void print_short_num(short, int *);
+void printout_short_num(short, int *);
+void print_unsignedshort_int(unsigned short, int *);
+void octal_print_short(unsigned short, int *);
+void hexa_print_short(unsigned short, int *, int *);
 #endif /* MAIN_H */

@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
  * @ap: the variadic argument
  * @count: the number of values to print
  * @flag: error checker
- * @flag: the second flag checker
+ * @flag1: the second flag checker
  *
  * Return: void
  */
@@ -117,6 +117,16 @@ int flag_character(const char *format, int *i, va_list ap, int *count,
 		}
 		else if (format[index] == '\0')
 			return (-1);
+	}
+	else if (format[index] == 'l')
+	{
+		*flag = 'l';
+		index++;
+	}
+	else if (format[index] == 'h')
+	{
+		*flag = 'h';
+		index++;
 	}
 	*i = index;
 	format_selector(format[index], ap, count, flag, flag1);

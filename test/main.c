@@ -41,6 +41,8 @@ int main(void)
 
 	len2 = printf("% ");
 	len = _printf("% % % % ");
+	_printf("%ld \n%ld\n", 1024L, -1024L);
+
 	printf("%d %d\n", len, len2);
 	return (0);
 }

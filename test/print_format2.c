@@ -5,6 +5,7 @@
  * @ap: the variadic args
  * @count: the number of bytes to print
  * @flag: flag to check error
+ * @flag1: flag checker 2
  *
  * Return: void
  */
@@ -43,6 +44,7 @@ void bin(unsigned int num, int *count)
  * @ap: the variadic arg
  * @count: the numbers of characters printed
  * @flag: error checker
+ * @flag1: flag checker 2
  *
  * Return: void
  */
@@ -80,17 +82,31 @@ void non_print_ascii(va_list ap, int *count,
  * @ap: the variadic amount of args
  * @count: the numbers of characters printed
  * @flag: error checker
+ * @flag1: flag checker 2
  *
  * Return: void
  */
 
-void unsigned_int(va_list ap, int *count,
-		__attribute__((unused)) int *flag,
+void unsigned_int(va_list ap, int *count, int *flag,
 		__attribute__((unused)) int *flag1)
 {
 	unsigned int num;
 
 	num = va_arg(ap, unsigned int);
+	if (*flag == 'l')
+	{
+		unsigned long int new_num = (unsigned long int)num;
+
+		print_unsignedlong_int(new_num, count);
+		return;
+	}
+	if (*flag == 'h')
+	{
+		unsigned short new_num = (unsigned short)num;
+
+		print_unsignedshort_int(new_num, count);
+		return;
+	}
 	print_num(num, count);
 }
 
@@ -99,6 +115,7 @@ void unsigned_int(va_list ap, int *count,
  * @ap: the variadic args
  * @count: the number of args passed
  * @flag: error checker
+ * @flag1: flag checker 2
  *
  * Return: void
  */
@@ -109,6 +126,24 @@ void octal(va_list ap, int *count, int *flag,
 	unsigned int num;
 
 	num = va_arg(ap, unsigned int);
+	if (*flag == 'l')
+	{
+		unsigned int long num1 = (unsigned int long)num;
+
+		if (num1 == 0)
+			*count += _putchar('0');
+		octal_print_long(num1, count);
+		return;
+	}
+	if (*flag == 'h')
+	{
+		unsigned short num1 = (unsigned short)num;
+
+		if (num1 == 0)
+			*count += _putchar('0');
+		octal_print_short(num1, count);
+		return;
+	}
 	if (num == 0 || *flag == '#')
 	{
 		*count += _putchar('0');

@@ -5,6 +5,7 @@
  * @ap: ap to print
  * @count: number of values to print
  * @flag: error checker
+ * @flag1: flag checker
  * Return: void
  */
 
@@ -22,6 +23,7 @@ void char_print(va_list ap, int *count, __attribute__((unused)) int *flag,
  * @ap: variadic arg
  * @count: the number of values to print
  * @flag: error checker
+ * @flag1: flag checker
  * Return: void
  */
 
@@ -47,6 +49,7 @@ void string_print(va_list ap, int *count, __attribute__((unused)) int *flag,
  * @ap: the variadic arg
  * @count: the number of args printed
  * @flag: error checker
+ * @flag1: flag checker
  * Return: void
  */
 
@@ -60,6 +63,16 @@ void int_print(va_list ap, int *count, int *flag, int *flag1)
 		*count += _putchar('+');
 	if (num >= 0 && (*flag == 32 && *flag1 != '+'))
 		*count += _putchar(' ');
+	if (*flag == 'l')
+	{
+		print_long_num((long int)num, count);
+		return;
+	}
+	if (*flag == 'h')
+	{
+		print_short_num((short)num, count);
+		return;
+	}
 	if (num < 0)
 	{
 		*count += _putchar('-');
@@ -90,6 +103,7 @@ void print_num(unsigned int n, int *count)
  * @ap: the variadic args
  * @count: the number of chars printed
  * @flag: error checker
+ * @flag1: flag checker
  * Return: void
  */
 
