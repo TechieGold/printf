@@ -60,11 +60,11 @@ void print_unsignedlong_int(unsigned long int num, int *count)
  * Return: void
  */
 
-void octal_print_long(unsigned int long num, int *count)
+void octal_print_long(unsigned long int num, int *count)
 {
 	if (num == 0)
 		return;
-	octal_print(num / 8, count);
+	octal_print_long(num / 8, count);
 	*count += _putchar((num % 8) + '0');
 }
 

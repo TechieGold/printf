@@ -134,7 +134,7 @@ void octal(va_list ap, int *count, int *flag,
 	num = va_arg(ap, unsigned int);
 	if (*flag == 'l')
 	{
-		unsigned int long num1 = va_arg(pa, unsigned long);
+		unsigned long int num1 = va_arg(pa, unsigned long int);
 
 		if (num1 == 0)
 			*count += _putchar('0');
