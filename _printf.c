@@ -11,6 +11,7 @@ int _printf(const char *format, ...)
 {
 	int count = 0, i = 0, flag = 0, flag1 = 0;
 	va_list ap;
+	int error = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -22,8 +23,10 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0')
 				return (-1);
-			flag_character(format, &i, ap, &count,
+			error = flag_character(format, &i, ap, &count,
 					&flag, &flag1);
+			if (error != 0)
+				return (-1);
 		}
 		else
 			count += _putchar(format[i]);
@@ -80,10 +83,10 @@ void format_selector(char c, va_list ap, int *count, int *flag,
  * @flag: the type of flag char 1
  * @flag1: the type of flag char 2
  *
- * Return: void
+ * Return: if error, return -1
  */
 
-void flag_character(const char *format, int *i, va_list ap, int *count,
+int flag_character(const char *format, int *i, va_list ap, int *count,
 		int *flag, int *flag1)
 {
 	int index = *i;
@@ -112,14 +115,10 @@ void flag_character(const char *format, int *i, va_list ap, int *count,
 			*flag = '+';
 			index++;
 		}
-		else if ((format[index] == '%') || (format[index] == '\0'))
-		{
-			*count += _putchar('%') + _putchar(32);
-			index--;
-			*i = index;
-			return;
-		}
+		else if (format[index] == '\0')
+			return (-1);
 	}
 	*i = index;
 	format_selector(format[index], ap, count, flag, flag1);
+	return (0);
 }

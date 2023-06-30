@@ -22,7 +22,7 @@ typedef struct formatSelector
 } f_select;
 
 int _printf(const char *format, ...);
-void flag_character(const char *, int *, va_list, int *, int *, int *);
+int flag_character(const char *, int *, va_list, int *, int *, int *);
 void format_selector(char, va_list, int *, int *, int *);
 void char_print(va_list, int *, int *, int *);
 void string_print(va_list, int *, int *, int *);

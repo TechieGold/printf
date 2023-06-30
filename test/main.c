@@ -39,7 +39,8 @@ int main(void)
 	_printf("% i + % i = % i\n", 98, 98, (98 + 98));
 	_printf("% +i + %+ i = % +d\n", -98, 98, (-98 + 98));
 
-	_printf("% \n");
-	_printf("% % % %\n");
+	len2 = printf("% ");
+	len = _printf("% % % % ");
+	printf("%d %d\n", len, len2);
 	return (0);
 }
