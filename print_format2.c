@@ -128,24 +128,28 @@ void octal(va_list ap, int *count, int *flag,
 		__attribute__((unused)) int *flag1)
 {
 	unsigned int num;
+	va_list pa;
 
+	va_copy(pa, ap);
 	num = va_arg(ap, unsigned int);
 	if (*flag == 'l')
 	{
-		unsigned int long num1 = (unsigned int long)num;
+		unsigned int long num1 = va_arg(pa, unsigned long);
 
 		if (num1 == 0)
 			*count += _putchar('0');
 		octal_print_long(num1, count);
+		va_end(pa);
 		return;
 	}
 	if (*flag == 'h')
 	{
-		unsigned short num1 = (unsigned short)num;
+		unsigned short num1 = va_arg(pa, unsigned int);
 
 		if (num1 == 0)
 			*count += _putchar('0');
 		octal_print_short(num1, count);
+		va_end(pa);
 		return;
 	}
 	if (num == 0 || *flag == '#')
@@ -153,4 +157,5 @@ void octal(va_list ap, int *count, int *flag,
 		*count += _putchar('0');
 	}
 	octal_print(num, count);
+	va_end(pa);
 }
