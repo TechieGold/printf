@@ -91,13 +91,16 @@ void unsigned_int(va_list ap, int *count, int *flag,
 		__attribute__((unused)) int *flag1)
 {
 	unsigned int num;
+	va_list pa;
 
+	va_copy(pa, ap);
 	num = va_arg(ap, unsigned int);
 	if (*flag == 'l')
 	{
-		unsigned long int new_num = (unsigned long int)num;
+		unsigned long int new_num = va_arg(pa, unsigned long);
 
 		print_unsignedlong_int(new_num, count);
+		va_end(pa);
 		return;
 	}
 	if (*flag == 'h')
@@ -108,6 +111,7 @@ void unsigned_int(va_list ap, int *count, int *flag,
 		return;
 	}
 	print_num(num, count);
+	va_end(pa);
 }
 
 /**
